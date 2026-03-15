@@ -1,6 +1,5 @@
-# Greatwebz-1
-Agent verification for billions network 
-name: Verify Billions Agent Identity
+# Greatwebz-1 
+Verify Billions Agent Identity
 
 on:
   workflow_dispatch: # Allows you to run this manually from the Actions tab
