@@ -1,16 +1,18 @@
-# Greatwebz-1 
-Verify Billions Agent Identity
-  workflow_dispatch: # Allows you to run this manually from the Actions tab
+name: Verify Billions Agent Identity
+
+on:
+  workflow_dispatch:
 
 jobs:
   verify-agent:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
-        uses: [actions/checkout@v4](https://github.com)
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: [actions/setup-node@v4](https://github.com)
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
@@ -21,6 +23,5 @@ jobs:
         run: node scripts/createNewEthereumIdentity.js
 
       - name: Generate Verification Link
-        # Replace [Agent Name] and [Description] with your actual data
         run: |
-          node scripts/manualLinkHumanToAgent.js --challenge '{"name": "MyGitHubAgent", "description": "Automated agent for repo tasks"}'
+          node scripts/manualLinkHumanToAgent.js --challenge '{"name":"MyGitHubAgent","description":"Automated agent for repo tasks"}'
