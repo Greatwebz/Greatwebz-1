@@ -1,0 +1,27 @@
+name: Verify Billions Agent Identity
+
+on:
+  workflow_dispatch: # Allows you to run this manually from the Actions tab
+
+jobs:
+  verify-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: [actions/checkout@v4](https://github.com)
+
+      - name: Setup Node.js
+        uses: [actions/setup-node@v4](https://github.com)
+        with:
+          node-version: '20'
+
+      - name: Install Billions Identity Skill
+        run: npx clawhub@latest install verified-agent-identity
+
+      - name: Generate Agent Identity
+        run: node scripts/createNewEthereumIdentity.js
+
+      - name: Generate Verification Link
+        # Replace [Agent Name] and [Description] with your actual data
+        run: |
+          node scripts/manualLinkHumanToAgent.js --challenge '{"name": "MyGitHubAgent", "description": "Automated agent for repo tasks"}'
